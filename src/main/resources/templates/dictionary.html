@@ -1,0 +1,55 @@
+<div th:insert="baseStructure/headerInformation :: header">  </div>
+<div th:insert="baseStructure/navbar :: navbar">  </div>
+
+<body>
+	<div th:insert="fragments/settingsNav :: settingsNav">  </div>
+	
+	<div class ="container">
+	
+		<h3 align="center">Available Words :</h3>		
+		
+		<div>
+			<form>		
+				Language:
+				
+			    	<select class="form-select" aria-label="Default select example">
+			  			<option selected>all</option>
+			  			<option value="german">german</option>
+			  			<option value="english">english</option>
+					</select>
+				
+				Word length:
+				
+					<select class="form-select" aria-label="Default select example">
+						<option selected>all</option>
+						<option value="5">5</option>
+						<option value="4">4</option>
+					</select>			
+				
+					<input type="submit" value="filter">
+			</form>
+		</div>
+		
+		<br></br>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Wort</th>
+					<th>Laenge</th>
+					<th>Sprache</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				<tr th:each="wort : ${woerterListe}">
+					<td th:text="${wort.wort}"></td>
+					<td th:text="${wort.laenge}"></td>
+					<td th:text="${wort.sprache}"></td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+</body>
+
+<div th:insert="baseStructure/footer :: footer"> </div>

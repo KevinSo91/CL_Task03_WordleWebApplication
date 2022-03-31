@@ -1,0 +1,22 @@
+<div th:insert="baseStructure/headerInformation :: header">  </div>
+<div th:insert="baseStructure/navbar :: navbar">  </div>
+
+<body>
+	<div class ="container">
+	
+		<h1 align="center">Game</h1>	
+		<br>
+		<form align="center" method="post">
+		<input type="submit" value="Start Game">
+		</form>
+		
+		<p align="center" th:text="${spielfeld}"/>			
+				
+		<form align="center" method="post">
+			<input type="submit" value="Check Word">
+		</form>
+				
+	</div>
+</body>
+
+<div th:insert="baseStructure/footer :: footer"> </div>
