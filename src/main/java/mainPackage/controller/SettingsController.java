@@ -19,11 +19,11 @@ public class SettingsController {
 		this.wortService = wortService;
 	}
 	
-	@GetMapping("/dictionary")
-	public String getDictionary(Model model) {
-		model.addAttribute("woerterListe", wortService.findeAlleWoerter());
-		return "dictionary";
-	}
+//	@GetMapping("/dictionary")
+//	public String getDictionary(Model model) {
+//		model.addAttribute("woerterListe", wortService.findeAlleWoerter());
+//		return "dictionary";
+//	}
 	
 	@GetMapping("/manual")
 	public String getManual() {

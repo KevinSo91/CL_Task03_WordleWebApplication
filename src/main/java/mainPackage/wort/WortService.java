@@ -26,6 +26,10 @@ public class WortService {
 		return wortRepository.findeAlleWoerterAusSprache(sprache);
 	}
 	
+	public List<Wort> findeAlleWoerterMitWortLaenge(int laenge) {
+		return wortRepository.findeAlleWoerterMitWortlaenge(laenge);
+	}
+	
 	public List<Wort> findeAlleWoerterAusSpracheMitWortlaenge(String sprache, int laenge) {
 		return wortRepository.findeAlleWoerterAusSpracheMitWortlaenge(sprache, laenge);
 	}
