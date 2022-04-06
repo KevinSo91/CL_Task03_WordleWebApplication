@@ -35,17 +35,17 @@ public class DictionaryController {
 		}
 		
 		// Keine Filter(RequestParams) angegeben oder Filter: Alles anzeigen
-		if(filterSprache == "all" && filterLaenge == "0") {
+		if(filterSprache.equals("all") && filterLaenge.equals("0")) {
 			model.addAttribute("woerterListe", wortService.findeAlleWoerter());
 		}
 		
 		else {			
 			// Nur Filter für Sprache ausgewählt
-			if(filterSprache != "all" && filterLaenge == "0") {
+			if(filterSprache.equals("all") == false && filterLaenge.equals("0")) {
 				model.addAttribute("woerterListe", wortService.findeAlleWoerterAusSprache(filterSprache));
 			}
 			// Nur Filter für Wortlänge ausgewählt
-			else if(filterSprache == "all" && filterLaenge != "0") {			
+			else if(filterSprache.equals("all") && filterLaenge.equals("0") == false) {			
 				model.addAttribute("woerterListe", wortService.findeAlleWoerterMitWortLaenge(Integer.parseInt(filterLaenge)));			
 			}
 			// Filter für Sprache und Wortlänge ausgewählt
@@ -56,7 +56,7 @@ public class DictionaryController {
 		
 		// Anzeige der aktiven Filter
 		String[] filterParams = {filterSprache, filterLaenge};
-		if(filterParams[1] == "0") {
+		if(filterParams[1].equals("0")) {
 			filterParams[1] = "all";
 		}
 		model.addAttribute("AnzeigeFilter", filterParams);
