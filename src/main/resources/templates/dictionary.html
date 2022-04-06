@@ -13,7 +13,7 @@
 				Language:
 				
 			    	<select name="languageFilter" class="form-select" aria-label="Default select example">
-			  			<option value="all" selected>all</option>
+			  			<option value="all">all</option>
 			  			<option value="german">german</option>
 			  			<option value="english">english</option>
 					</select>
@@ -21,13 +21,21 @@
 				Word length:
 				
 					<select name="wordLengthFilter" class="form-select" aria-label="Default select example">
-						<option value="0" selected>all</option>
+						<option value="0">all</option>
 						<option value="4">4</option>
 						<option value="5">5</option>
 					</select>			
 					
 					<input type="submit" value="filter">
 			</form>
+		</div>
+		<div>
+			<span><b>active filter:</b></span><br>
+			<span th:if="${filter[0] != 'all'}"><b>lanuage:</b></span>
+			<span th:if="${filter[0] != 'all'}" th:text="${filter[0]}"></span>			
+			<span th:if="${filter[1] != '0'}"><b>word length:</b></span>
+			<span th:if="${filter[1] != '0'}" th:text="${filter[1]}"></span>
+			
 		</div>
 		
 		<br></br>
