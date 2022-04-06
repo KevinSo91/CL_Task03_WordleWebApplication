@@ -55,11 +55,11 @@ public class DictionaryController {
 		}		
 		
 		// Anzeige der aktiven Filter
-		String[] filterParams = {filterSprache, filterLaenge};
-		if(filterParams[1].equals("0")) {
-			filterParams[1] = "all";
+		String[] anzeigeAktiveFilter = {filterSprache, filterLaenge};
+		if(anzeigeAktiveFilter[1].equals("0")) {
+			anzeigeAktiveFilter[1] = "all";
 		}
-		model.addAttribute("AnzeigeFilter", filterParams);
+		model.addAttribute("aktiveFilter", anzeigeAktiveFilter);
 		
 		
 		return "dictionary";

@@ -29,22 +29,24 @@
 					<input type="submit" value="filter">
 			</form>
 		</div>
-		<div>
-			<span><b>active filters:</b></span><br>
-			<span th:if="${AnzeigeFilter[0] != 'all'}"><b>lanuage:</b></span>
-			<span th:if="${AnzeigeFilter[0] != 'all'}" th:text="${AnzeigeFilter[0]}"></span>			
-			<span th:if="${AnzeigeFilter[1] != 'all'}"><b>word length:</b></span>
-			<span th:if="${AnzeigeFilter[1] != 'all'}" th:text="${AnzeigeFilter[1]}"></span>
-			
+		
+		<b>active filters:</b>
+		<div th:if="${aktiveFilter[0] != 'all'}">
+			<span><b>lanuage:</b></span>
+			<span th:text="${aktiveFilter[0]}"></span>	
+		</div>
+		<div th:if="${aktiveFilter[1] != 'all'}">					
+			<span ><b>word length:</b></span>
+			<span th:text="${aktiveFilter[1]}"></span>			
 		</div>
 		
 		<br></br>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Wort</th>
-					<th>Laenge</th>
-					<th>Sprache</th>
+					<th>Word</th>
+					<th>Number of letters</th>
+					<th>Language</th>
 				</tr>
 				
 			</thead>
