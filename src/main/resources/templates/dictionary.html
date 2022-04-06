@@ -31,10 +31,10 @@
 		</div>
 		<div>
 			<span><b>active filter:</b></span><br>
-			<span th:if="${filter[0] != 'all'}"><b>lanuage:</b></span>
-			<span th:if="${filter[0] != 'all'}" th:text="${filter[0]}"></span>			
-			<span th:if="${filter[1] != '0'}"><b>word length:</b></span>
-			<span th:if="${filter[1] != '0'}" th:text="${filter[1]}"></span>
+			<span th:if="${AnzeigeFilter[0] != 'all'}"><b>lanuage:</b></span>
+			<span th:if="${AnzeigeFilter[0] != 'all'}" th:text="${AnzeigeFilter[0]}"></span>			
+			<span th:if="${AnzeigeFilter[1] != 'all'}"><b>word length:</b></span>
+			<span th:if="${AnzeigeFilter[1] != 'all'}" th:text="${AnzeigeFilter[1]}"></span>
 			
 		</div>
 		

@@ -23,40 +23,44 @@ public class DictionaryController {
 	@GetMapping()
 	public String getDictionary(Model model, @RequestParam(required = false) String languageFilter, @RequestParam(required = false) String wordLengthFilter) {
 		
-		if(languageFilter == null) {
-			languageFilter = "all";
+		String filterSprache = languageFilter;
+		String filterLaenge = wordLengthFilter;
+		
+		if(filterSprache == null) {
+			filterSprache = "all";
 		}
 		
-		if(wordLengthFilter == null) {
-			wordLengthFilter = "0";
+		if(filterLaenge == null) {
+			filterLaenge = "0";
 		}
 		
 		// Keine Filter(RequestParams) angegeben oder Filter: Alles anzeigen
-		if((languageFilter == "all" && wordLengthFilter == "0") || (languageFilter == null && wordLengthFilter == null)) {
+		if(filterSprache == "all" && filterLaenge == "0") {
 			model.addAttribute("woerterListe", wortService.findeAlleWoerter());
 		}
 		
 		else {			
 			// Nur Filter für Sprache ausgewählt
-			if(languageFilter != "all" && wordLengthFilter == "0") {
-				model.addAttribute("woerterListe", wortService.findeAlleWoerterAusSprache(languageFilter));
+			if(filterSprache != "all" && filterLaenge == "0") {
+				model.addAttribute("woerterListe", wortService.findeAlleWoerterAusSprache(filterSprache));
 			}
 			// Nur Filter für Wortlänge ausgewählt
-			else if(languageFilter == "all" && wordLengthFilter != "0") {			
-				model.addAttribute("woerterListe", wortService.findeAlleWoerterMitWortLaenge(Integer.parseInt(wordLengthFilter)));			
+			else if(filterSprache == "all" && filterLaenge != "0") {			
+				model.addAttribute("woerterListe", wortService.findeAlleWoerterMitWortLaenge(Integer.parseInt(filterLaenge)));			
 			}
 			// Filter für Sprache und Wortlänge ausgewählt
 			else {			
-				model.addAttribute("woerterListe", wortService.findeAlleWoerterAusSpracheMitWortlaenge(languageFilter, Integer.parseInt(wordLengthFilter)));
+				model.addAttribute("woerterListe", wortService.findeAlleWoerterAusSpracheMitWortlaenge(filterSprache, Integer.parseInt(filterLaenge)));
 			}			
 		}		
 		
 		// Anzeige der aktiven Filter
-		String[] filterParams = {languageFilter, wordLengthFilter};
+		String[] filterParams = {filterSprache, filterLaenge};
 		if(filterParams[1] == "0") {
 			filterParams[1] = "all";
 		}
-		model.addAttribute("filter", filterParams);
+		model.addAttribute("AnzeigeFilter", filterParams);
+		
 		
 		return "dictionary";
 	}
