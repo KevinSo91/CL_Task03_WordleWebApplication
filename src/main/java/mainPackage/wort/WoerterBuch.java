@@ -1,5 +1,6 @@
 package mainPackage.wort;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -25,7 +26,7 @@ public class WoerterBuch {
 			Wort wort9 = new Wort("snake", "english");
 	
 			
-			repository.saveAll(List.of(wort0, wort1, wort2, wort3, wort4, wort5, wort6, wort7, wort8, wort9));
+			repository.saveAll(Arrays.asList(wort0, wort1, wort2, wort3, wort4, wort5, wort6, wort7, wort8, wort9));
 		};
 	}
 
