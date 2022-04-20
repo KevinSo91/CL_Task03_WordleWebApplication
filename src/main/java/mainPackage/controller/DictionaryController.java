@@ -21,18 +21,11 @@ public class DictionaryController {
 	}
 
 	@GetMapping()
-	public String getDictionary(Model model, @RequestParam(required = false) String languageFilter, @RequestParam(required = false) String wordLengthFilter) {
+	public String getDictionary(Model model, @RequestParam(required = false, defaultValue = "all") String languageFilter,
+											@RequestParam(required = false, defaultValue = "0") String wordLengthFilter) {
 		
 		String filterSprache = languageFilter;
 		String filterLaenge = wordLengthFilter;
-		
-		if(filterSprache == null) {
-			filterSprache = "all";
-		}
-		
-		if(filterLaenge == null) {
-			filterLaenge = "0";
-		}
 		
 		// Keine Filter(RequestParams) angegeben oder Filter: Alles anzeigen
 		if(filterSprache.equals("all") && filterLaenge.equals("0")) {
