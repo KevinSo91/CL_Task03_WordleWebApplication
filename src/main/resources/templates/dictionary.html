@@ -1,47 +1,33 @@
 <div th:insert="baseStructure/headerInformation :: header">  </div>
 <div th:insert="baseStructure/navbar :: navbar">  </div>
 
+<head>
+	
+	<!-- Java Script für die Tabellen Ansicht -->
+	<link rel ="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+	
+	<script>
+		$(document).ready(function() {
+		    $('#tabelle_woerter').DataTable();
+		} );
+	</script>
+	<!-- ENDE Java Script für die Tabellen Ansicht -->
+	
+</head>
+
 <body>
 	<div th:insert="fragments/settingsNav :: settingsNav">  </div>
 	
+	<!-- Tabelle -->
 	<div class ="container">
 	
-		<h3 align="center">Available Words :</h3>		
+		<h3 align="center">Available Words</h3>		
 		
-		<div>
-			<form>		
-				Language:
-				
-			    	<select name="languageFilter" class="form-select" aria-label="Default select example">
-			  			<option value="all">all</option>
-			  			<option value="german">german</option>
-			  			<option value="english">english</option>
-					</select>
-				
-				Word length:
-				
-					<select name="wordLengthFilter" class="form-select" aria-label="Default select example">
-						<option value="0">all</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>			
-					
-					<input type="submit" value="filter">
-			</form>
-		</div>
 		
-		<b>active filters:</b>
-		<div th:if="${aktiveFilter[0] != 'all'}">
-			<span><b>lanuage:</b></span>
-			<span th:text="${aktiveFilter[0]}"></span>	
-		</div>
-		<div th:if="${aktiveFilter[1] != 'all'}">					
-			<span ><b>word length:</b></span>
-			<span th:text="${aktiveFilter[1]}"></span>			
-		</div>
-		
-		<br></br>
-		<table class="table table-bordered table-striped">
+		<table id="tabelle_woerter" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>Word</th>
@@ -60,6 +46,29 @@
 		</table>
 	
 	</div>
+	<br>
+	<br>
+	
+	
+	<!-- Wort hinzufügen -->
+	<div class="container">		
+		
+		<b>Add new word</b>
+		
+		<form method="post" action="#" th:action="@{/settings/dictionary}" th:object="${neuesWort}">
+		
+			<label>Word </label>
+		    <input type="text" th:field="*{wort}" />
+		       
+		    <label>Language </label>
+		    <input type="text" th:field="*{sprache}" />
+		        
+		    <input type="submit" value="add" />	   
+		
+		</form>
+	
+	</div>
+	
 </body>
 
 <div th:insert="baseStructure/footer :: footer"> </div>

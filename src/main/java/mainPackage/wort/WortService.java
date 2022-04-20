@@ -41,5 +41,9 @@ public class WortService {
 		return findeAlleWoerterAusSpracheMitWortlaenge(sprache, laenge).get(zufallsZahl).getWort();
 	}
 	
+	public void speichereNeuesWort(Wort neuesWort) {
+		wortRepository.save(neuesWort);
+	}
+	
 	
 }

@@ -18,12 +18,14 @@ public class SettingsController {
 	
 	
 	@GetMapping("/manual")
-	public String getManual() {
+	public String getManual(Model model) {
+		model.addAttribute("activePage", "settings");
 		return "manual";
 	}
 	
 	@GetMapping("/highscoreList")
-	public String getHighscoreList() {
+	public String getHighscoreList(Model model) {
+		model.addAttribute("activePage", "settings");
 		return "highscoreList";
 	}
 }
