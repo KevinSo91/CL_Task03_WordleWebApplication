@@ -45,5 +45,8 @@ public class WortService {
 		wortRepository.save(neuesWort);
 	}
 	
+	public void loescheAltesWort(String altesWort) {		
+		wortRepository.loescheWort(altesWort.toUpperCase());;
+	}
 	
 }

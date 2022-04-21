@@ -55,7 +55,7 @@
 		
 		<b>Add new word</b>
 		
-		<form method="post" action="#" th:action="@{/settings/dictionary}" th:object="${neuesWort}">
+		<form method="post" action="#" th:action="@{/settings/dictionary/save}" th:object="${neuesWort}">
 		
 			<label>Word </label>
 		    <input type="text" th:field="*{wort}" />
@@ -64,6 +64,24 @@
 		    <input type="text" th:field="*{sprache}" />
 		        
 		    <input type="submit" value="add" />	   
+		
+		</form>
+	
+	</div>
+	<br>
+	
+	
+	<!-- Wort löschen -->
+	<div class="container">		
+		
+		<b>Delete word</b>
+		
+		<form method="post" action="#" th:action="@{/settings/dictionary/delete}">
+		
+			<label>Word </label>
+		    <input type="text" name="altesWort" />
+		        
+		    <input type="submit" value="delete" />	   
 		
 		</form>
 	
