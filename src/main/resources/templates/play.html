@@ -1,22 +1,38 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <div th:insert="baseStructure/headerInformation :: header">  </div>
 <div th:insert="baseStructure/navbar :: navbar">  </div>
 
 <body>
-	<div class ="container">
+	<div class ="container" align="center">
 	
-		<h1 align="center">Game</h1>	
+		<h1>Play</h1>
 		<br>
-		<form align="center" method="post">
-		<input type="submit" value="Start Game">
-		</form>
 		
-		<p align="center" th:text="${spielfeld}"/>			
-				
-		<form align="center" method="post">
-			<input type="submit" value="Check Word">
-		</form>
-				
+		<b>active filters:</b>
+		<div>
+			<span><b>lanuage:</b></span>
+			<span th:text="${aktiveFilter[0]}"></span>	
+		</div>
+		<div th:if="${aktiveFilter[1] != 'all'}">					
+			<span ><b>word length:</b></span>
+			<span th:text="${aktiveFilter[1]}"></span>			
+		</div>
+		
 	</div>
+	
+	
+	<!-- Spielfeld -->
+	<div>	
+		<table>		
+			<tbody>
+			
+				
+			
+			</tbody>		
+		</table>	
+	</div>
+	
+	
 </body>
-
-<div th:insert="baseStructure/footer :: footer"> </div>
+		

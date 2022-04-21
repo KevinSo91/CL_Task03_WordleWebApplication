@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:insert="baseStructure/headerInformation :: header">  </div>
 
@@ -17,8 +17,8 @@
             <li th:class="${activePage == 'settings'} ? 'nav-item active' : 'nav-item'">
                 <a class="nav-link" th:href="@{http://localhost:8101/settings}">Settings</a>
             </li>
-            <li th:class="${activePage == 'play'} ? 'nav-item active' : 'nav-item'">
-                <a class="nav-link" th:href="@{http://localhost:8101/play}">Play</a>
+            <li th:class="${activePage == 'game'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{http://localhost:8101/game}">Game</a>
             </li>           
         </ul>
     </div>

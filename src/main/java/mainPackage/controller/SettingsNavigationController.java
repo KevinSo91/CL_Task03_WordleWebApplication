@@ -10,10 +10,10 @@ import mainPackage.wort.WortService;
 
 @Controller
 @RequestMapping("/settings")
-public class SettingsController {
+public class SettingsNavigationController {
 	
 	@Autowired
-	public SettingsController(WortService wortService) {
+	public SettingsNavigationController(WortService wortService) {
 	}
 	
 	

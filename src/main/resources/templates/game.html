@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="baseStructure/headerInformation :: header">  </div>
+<div th:insert="baseStructure/navbar :: navbar">  </div>
+
+<body>
+	<div class ="container" align="center">
+	
+		<h1>Game</h1>
+			
+		<br>
+		Choose Game Settings
+		<br>
+		<br>
+		
+		<form method="post" action='#' th:action="@{/game/play}">		
+			Language:
+			
+		    	<select name="languageFilter" class="form-select" aria-label="Default select example">
+		  			<option value="all">all</option>
+		  			<option value="german">german</option>
+		  			<option value="english">english</option>
+				</select>
+				
+			Word length:
+				
+				<select name="wordLengthFilter" class="form-select" aria-label="Default select example">
+					<option value="0">all</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>			
+				<br>
+				<br>
+				
+				<input type="submit" value="Start Game">
+		</form>
+			
+	</div>
+</body>
+
+<div th:insert="baseStructure/footer :: footer"> </div>
