@@ -8,31 +8,47 @@
 	
 		<h1>Play</h1>
 		<br>
+		<br>
 		
-		<b>active filters:</b>
+		<b>Game Settings:</b>
 		<div>
 			<span><b>lanuage:</b></span>
-			<span th:text="${aktiveFilter[0]}"></span>	
+			<span th:text="${spielEinstellungen[0]}"></span>	
 		</div>
-		<div th:if="${aktiveFilter[1] != 'all'}">					
+		<div th:if="${spielEinstellungen[1] != 'all'}">					
 			<span ><b>word length:</b></span>
-			<span th:text="${aktiveFilter[1]}"></span>			
+			<span th:text="${spielEinstellungen[1]}"></span>			
 		</div>
 		
 	</div>
-	
+	<br>
+	<br>
 	
 	<!-- Spielfeld -->
-	<div>	
-		<table>		
-			<tbody>
+	<div class ="container">
+		
+		<table align="center">			
 			
+			<tr th:each="EingabeVersuch, versuch : ${gameService.getGameSession().getSpielfeld().getEingabeVersuche()}">
 				
-			
-			</tbody>		
-		</table>	
+				<td th:each="Feld, feld : versuch.buchstabenFelder">					
+					<form method="post">
+						<input type="text" maxlength="1" name="${feld.getId()}" value=feld.buchstabe>
+					</form>
+				</td>
+				
+			</tr>
+		
+		</table>		
+				
 	</div>
 	
+	<br>
+	<br>
+	
+	<form method="post" action='#' th:action="@{/game/play/checkWord}" align="center">
+		<input type="submit" value="check word">
+	</form>
 	
 </body>
 		
