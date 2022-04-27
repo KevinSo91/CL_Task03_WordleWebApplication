@@ -1,15 +1,21 @@
 package mainPackage.game;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Feld {
 	
 	private char buchstabe;
 	
 	private String farbe;
 	
-	
-	public Feld() {		
+	@Autowired
+	public Feld() {
+		this.farbe = "white";
 	}
 	
+//	@Autowired
 	public Feld(char buchstabe) {
 		this.buchstabe = buchstabe;
 		this.farbe = "white";

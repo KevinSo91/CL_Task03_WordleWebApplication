@@ -29,7 +29,7 @@
 		
 		<table align="center">			
 			
-			<tr th:each="EingabeVersuch, versuch : ${gameService.getGameSession().getSpielfeld().getEingabeVersuche()}">
+			<tr th:each="EingabeVersuch, versuch : ${gameSession.getSpielfeld().getEingabeVersuche()}">
 				
 				<td th:each="Feld, feld : versuch.buchstabenFelder">					
 					<form method="post">

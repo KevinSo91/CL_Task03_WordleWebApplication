@@ -1,7 +1,9 @@
 package mainPackage.game;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EingabeVersuch {
 	
 	
@@ -14,11 +16,11 @@ public class EingabeVersuch {
 		this.buchstabenFelder = new Feld[anzahlBuchstaben];
 	}
 	
-	@Autowired
+//	@Autowired
 	public EingabeVersuch(int anzahlBuchstaben) {
 		this.buchstabenFelder = new Feld[anzahlBuchstaben];
-		for(Feld feld : buchstabenFelder) {
-			feld = new Feld();
+		for(int i = 0; i < anzahlBuchstaben; i++) {
+			buchstabenFelder[i] = new Feld();
 		}
 	}
 

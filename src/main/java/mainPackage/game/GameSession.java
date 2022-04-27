@@ -3,8 +3,9 @@ package mainPackage.game;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class GameSession {
 	
 	// ****************************************************** Attribute **********************************************************************
@@ -35,10 +36,11 @@ public class GameSession {
 	// ***************************************************** Konstruktoren *********************************************************************
 	
 	@Autowired
-	public GameSession(){		
+	public GameSession(){
+		this.versuche = 0;
 	}
 	
-	@Autowired
+//	@Autowired
 	public GameSession(String sprache, int wortLaenge, String loesungWort) {		
 		this.sprache = sprache;
 		this.loesungWort = loesungWort.toUpperCase();

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameService {
 
+	@Autowired
 	private GameSession gameSession;
 	
 	@Autowired
@@ -13,14 +14,16 @@ public class GameService {
 		this.gameSession = new GameSession();
 	}
 	
-	public void starteSpiel(String sprache, int wortLaenge, String loesungWort) {	
-
-		this.gameSession = new GameSession(sprache, wortLaenge, loesungWort);
-		
+	public void starteSpiel() {
+		this.gameSession = new GameSession();		
 	}
 
 	public GameSession getGameSession() {
 		return gameSession;
+	}
+
+	public void setGameSession(GameSession gameSession) {
+		this.gameSession = gameSession;
 	}
 	
 //	public void pruefeEingabe(String eingabe) {

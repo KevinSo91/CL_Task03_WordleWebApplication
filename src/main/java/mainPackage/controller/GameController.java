@@ -10,22 +10,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mainPackage.game.GameService;
+import mainPackage.game.GameSession;
 import mainPackage.wort.WortService;
 
 @Controller
 @RequestMapping(value="/game")
 public class GameController {
 	
-	private final GameService gameService;
-	
-	private final WortService wortService;
+	@Autowired
+	private GameService gameService;
 	
 	@Autowired
-	public GameController(GameService gameService, WortService wortService) {
-		this.gameService = gameService;
-		this.wortService = wortService;	
+	private WortService wortService;
+	
+	@Autowired
+	public GameController() {		
 	}
 	
+//	@Autowired
+//	public GameController(GameService gameService, WortService wortService) {
+//		this.gameService = gameService;
+//		this.wortService = wortService;	
+//	}
+	
+	// ************************************* Spieloptionen *****************************************************
 	
 	@GetMapping()
 	public String getGame(Model model){
@@ -33,6 +41,7 @@ public class GameController {
 		return "game";
 	}
 		
+	// ************************************** Spielablauf ******************************************************
 	
 	@GetMapping("/play")
 	public String getPlay(Model model)
@@ -43,24 +52,47 @@ public class GameController {
 	
 	
 	@PostMapping("/play")
-	public String startPlay(Model model, @ModelAttribute("gameServiceAttribute") GameService gameServiceAttribute,
-										@RequestParam(defaultValue = "all") String languageFilter,
-										@RequestParam(defaultValue = "0") String wordLengthFilter){		
+	public String startPlay(Model model,@RequestParam(defaultValue = "all") String languageOption,
+										@RequestParam(defaultValue = "0") String wordLengthOption){		
 		model.addAttribute("activePage", "game");		
-				
-		this.gameService.starteSpiel(languageFilter, Integer.parseInt(wordLengthFilter), wortService.findeZufallsWortAusSpracheMitWortlaenge(languageFilter, Integer.parseInt(wordLengthFilter)));
+
+		// Erstelle Instanz für die GameSession
+		this.gameService.starteSpiel();
 		
-		this.gameService.getGameSession().setSprache(languageFilter);
-		this.gameService.getGameSession().setWortLaenge(Integer.parseInt(wordLengthFilter));
+		String loesungswort;
 		
-		model.addAttribute("gameService", this.gameService);
+		// ********************** Setze Properties der Gamesession**************************************
 		
-		//Anzeige für ausgewählte Spieleinstellungen (Sprache, Wortlänge)
-		String[] anzeigeSpielEinstellungen = {languageFilter, wordLengthFilter};
+		// Lösungswort
+		if(languageOption.equals("all") && wordLengthOption.equals("0")) {
+			loesungswort = wortService.findeZufallsWort();
+		}
+		else if(!languageOption.equals("all") && wordLengthOption.equals("0")) {
+			loesungswort = wortService.findeZufallsWortAusSprache(languageOption);
+		}
+		else if(languageOption.equals("all") && !wordLengthOption.equals("0")) {
+			loesungswort = wortService.findeZufallsWortMitWortlaenge(Integer.parseInt(wordLengthOption));
+		}
+		else {
+			loesungswort = wortService.findeZufallsWortAusSpracheMitWortlaenge(languageOption, Integer.parseInt(wordLengthOption));
+		}
+		
+//		this.gameService.getGameSession().setLoesungWort(loesungswort);
+//		this.gameService.getGameSession().setSprache(languageOption);
+//		this.gameService.getGameSession().setWortLaenge(Integer.parseInt(wordLengthOption));
+//		this.gameService.getGameSession().setVersucheMax(loesungswort.length());
+		
+		this.gameService.setGameSession(new GameSession(languageOption, Integer.parseInt(wordLengthOption), loesungswort));
+		
+		// Anzeige für ausgewählte Spieleinstellungen (Sprache, Wortlänge)
+		String[] anzeigeSpielEinstellungen = {languageOption, wordLengthOption};
 		if(anzeigeSpielEinstellungen[1].equals("0")) {
 			anzeigeSpielEinstellungen[1] = "all";
 		}
+		
+		// Befülle Model
 		model.addAttribute("spielEinstellungen", anzeigeSpielEinstellungen);
+		model.addAttribute("gameSession", this.gameService.getGameSession());			
 		
 		return "play";
 	}
