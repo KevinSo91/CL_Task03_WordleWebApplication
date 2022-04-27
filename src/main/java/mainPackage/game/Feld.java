@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Feld {
 	
+	private int id;
+	
 	private char buchstabe;
 	
 	private String farbe;
@@ -22,6 +24,13 @@ public class Feld {
 	}
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public char getBuchstabe() {
 		return buchstabe;

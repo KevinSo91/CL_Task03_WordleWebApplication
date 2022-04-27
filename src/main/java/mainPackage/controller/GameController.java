@@ -56,14 +56,14 @@ public class GameController {
 										@RequestParam(defaultValue = "0") String wordLengthOption){		
 		model.addAttribute("activePage", "game");		
 
-		// Erstelle Instanz für die GameSession
-		this.gameService.starteSpiel();
+//		// Erstelle Instanz für die GameSession
+//		this.gameService.starteSpiel();
 		
 		String loesungswort;
 		
-		// ********************** Setze Properties der Gamesession**************************************
+		// ************************* Setze Properties der Gamesession **************************************
 		
-		// Lösungswort
+		// Setze Lösungswort aus Datenbank
 		if(languageOption.equals("all") && wordLengthOption.equals("0")) {
 			loesungswort = wortService.findeZufallsWort();
 		}
@@ -77,12 +77,8 @@ public class GameController {
 			loesungswort = wortService.findeZufallsWortAusSpracheMitWortlaenge(languageOption, Integer.parseInt(wordLengthOption));
 		}
 		
-//		this.gameService.getGameSession().setLoesungWort(loesungswort);
-//		this.gameService.getGameSession().setSprache(languageOption);
-//		this.gameService.getGameSession().setWortLaenge(Integer.parseInt(wordLengthOption));
-//		this.gameService.getGameSession().setVersucheMax(loesungswort.length());
 		
-		this.gameService.setGameSession(new GameSession(languageOption, Integer.parseInt(wordLengthOption), loesungswort));
+		this.gameService.setGameSession(new GameSession(languageOption, loesungswort.length(), loesungswort));
 		
 		// Anzeige für ausgewählte Spieleinstellungen (Sprache, Wortlänge)
 		String[] anzeigeSpielEinstellungen = {languageOption, wordLengthOption};

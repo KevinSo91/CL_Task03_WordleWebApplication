@@ -13,12 +13,8 @@
 		<b>Game Settings:</b>
 		<div>
 			<span><b>lanuage:</b></span>
-			<span th:text="${spielEinstellungen[0]}"></span>	
-		</div>
-		<div th:if="${spielEinstellungen[1] != 'all'}">					
-			<span ><b>word length:</b></span>
-			<span th:text="${spielEinstellungen[1]}"></span>			
-		</div>
+			<span th:text="${gameSession.getSprache()}"></span>	
+		</div>		
 		
 	</div>
 	<br>
@@ -29,12 +25,13 @@
 		
 		<table align="center">			
 			
-			<tr th:each="EingabeVersuch, versuch : ${gameSession.getSpielfeld().getEingabeVersuche()}">
+			<tr th:each="eingabeVersuch : ${gameSession.getSpielfeld().getEingabeVersuche()}">
 				
-				<td th:each="Feld, feld : versuch.buchstabenFelder">					
+				<td th:each="feld : ${eingabeVersuch.getBuchstabenFelder()}">	
 					<form method="post">
-						<input type="text" maxlength="1" name="${feld.getId()}" value=feld.buchstabe>
+						<input type="text" maxlength="1" th:name="${feld.getId()}" th:value="${feld.getBuchstabe()}">
 					</form>
+					
 				</td>
 				
 			</tr>
@@ -49,6 +46,9 @@
 	<form method="post" action='#' th:action="@{/game/play/checkWord}" align="center">
 		<input type="submit" value="check word">
 	</form>
+	
+	<!-- Test -->
+	<div align="center"><span th:text="${gameSession.getLoesungWort}"></span></div>
 	
 </body>
 		

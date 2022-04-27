@@ -30,6 +30,14 @@ public class EingabeVersuch {
 	}
 
 
+	public int getAnzahlBuchstaben() {
+		return anzahlBuchstaben;
+	}
+
+	public void setAnzahlBuchstaben(int anzahlBuchstaben) {
+		this.anzahlBuchstaben = anzahlBuchstaben;
+	}
+
 	public void setBuchstabenFelder(Feld[] buchstabenFelder) {
 		this.buchstabenFelder = buchstabenFelder;
 	}
