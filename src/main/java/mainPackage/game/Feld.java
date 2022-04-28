@@ -8,9 +8,10 @@ public class Feld {
 	
 	private int id;
 	
-	private char buchstabe;
+	private Character buchstabe;
 	
 	private String farbe;
+	
 	
 	@Autowired
 	public Feld() {
@@ -18,10 +19,10 @@ public class Feld {
 	}
 	
 //	@Autowired
-	public Feld(char buchstabe) {
-		this.buchstabe = buchstabe;
-		this.farbe = "white";
-	}
+//	public Feld(char buchstabe) {
+//		this.buchstabe = buchstabe;
+//		this.farbe = "white";
+//	}
 	
 	
 	public int getId() {
@@ -32,7 +33,7 @@ public class Feld {
 		this.id = id;
 	}
 
-	public char getBuchstabe() {
+	public Character getBuchstabe() {
 		return buchstabe;
 	}
 

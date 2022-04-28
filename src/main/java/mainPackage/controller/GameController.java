@@ -54,10 +54,8 @@ public class GameController {
 	@PostMapping("/play")
 	public String startPlay(Model model,@RequestParam(defaultValue = "all") String languageOption,
 										@RequestParam(defaultValue = "0") String wordLengthOption){		
-		model.addAttribute("activePage", "game");		
-
-//		// Erstelle Instanz für die GameSession
-//		this.gameService.starteSpiel();
+		
+		model.addAttribute("activePage", "game");	
 		
 		String loesungswort;
 		
@@ -76,18 +74,10 @@ public class GameController {
 		else {
 			loesungswort = wortService.findeZufallsWortAusSpracheMitWortlaenge(languageOption, Integer.parseInt(wordLengthOption));
 		}
-		
-		
+				
 		this.gameService.setGameSession(new GameSession(languageOption, loesungswort.length(), loesungswort));
-		
-		// Anzeige für ausgewählte Spieleinstellungen (Sprache, Wortlänge)
-		String[] anzeigeSpielEinstellungen = {languageOption, wordLengthOption};
-		if(anzeigeSpielEinstellungen[1].equals("0")) {
-			anzeigeSpielEinstellungen[1] = "all";
-		}
-		
+			
 		// Befülle Model
-		model.addAttribute("spielEinstellungen", anzeigeSpielEinstellungen);
 		model.addAttribute("gameSession", this.gameService.getGameSession());			
 		
 		return "play";
