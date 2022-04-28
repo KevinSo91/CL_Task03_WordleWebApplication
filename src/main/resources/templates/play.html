@@ -21,31 +21,32 @@
 	<br>
 	
 	<!-- Spielfeld -->
-	<div class ="container" align="center">
-		
-		<table>			
+	<form method="post" action='#' th:action="@{/game/play/checkWord}" th:object="${spielfeld}" align="center">
+	
+		<div class ="container" align="center">
 			
-			<tr th:each="eingabeVersuch : ${gameSession.getSpielfeld().getEingabeVersuche()}">
+			<table>			
 				
-				<td th:each="feld : ${eingabeVersuch.getBuchstabenFelder()}">	
-					<form method="post">
+				<tr th:each="eingabeVersuch : ${gameSession.getSpielfeld().getEingabeVersuche()}">
+					
+					<td th:each="feld : ${eingabeVersuch.getBuchstabenFelder()}">	
+						
 						<input type="text" maxlength="1" th:name="${feld.getId()}" 
 							th:value="${feld.getBuchstabe()} ?: ''">
-					</form>
 					
-				</td>
-				
-			</tr>
+					</td>
+					
+				</tr>
+			
+			</table>		
+					
+		</div>
 		
-		</table>		
-				
-	</div>
-	
-	<br>
-	<br>
-	
-	<form method="post" action='#' th:action="@{/game/play/checkWord}" align="center">
+		<br>
+		<br>
+		
 		<input type="submit" value="check word">
+	
 	</form>
 	
 	<!-- Test -->

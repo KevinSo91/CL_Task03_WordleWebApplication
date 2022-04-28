@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mainPackage.game.GameService;
 import mainPackage.game.GameSession;
+import mainPackage.game.Spielfeld;
 import mainPackage.wort.WortService;
 
 @Controller
@@ -47,12 +48,16 @@ public class GameController {
 	public String getPlay(Model model)
 	{
 		model.addAttribute("activePage", "game");
+		
+		model.addAttribute("gameSession", this.gameService.getGameSession());
+		
 		return "play";
 	}
 	
 	
 	@PostMapping("/play")
-	public String startPlay(Model model,@RequestParam(defaultValue = "all") String languageOption,
+	public String startPlay(Model model,@ModelAttribute("spielfeld") Spielfeld spielfeld,
+										@RequestParam(defaultValue = "all") String languageOption,
 										@RequestParam(defaultValue = "0") String wordLengthOption){		
 		
 		model.addAttribute("activePage", "game");	
@@ -78,17 +83,22 @@ public class GameController {
 		this.gameService.setGameSession(new GameSession(languageOption, loesungswort.length(), loesungswort));
 			
 		// Befülle Model
-		model.addAttribute("gameSession", this.gameService.getGameSession());			
+		model.addAttribute("gameSession", this.gameService.getGameSession());
 		
 		return "play";
 	}
 	
 	
 	@PostMapping("/play/checkWord")
-	public String postCheckWord(Model model, @RequestParam(required = false) String word){		
+	public String postCheckWord(Model model, @ModelAttribute("spielfeld") Spielfeld spielfeld){		
 		model.addAttribute("activePage", "game");
 		
-		return "play";
+		
+		
+		// Befülle Model
+		model.addAttribute("gameSession", this.gameService.getGameSession());
+				
+		return "redirect:/game/play";
 	}
 	
 

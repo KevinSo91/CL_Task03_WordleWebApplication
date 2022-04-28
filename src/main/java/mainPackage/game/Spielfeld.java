@@ -21,7 +21,7 @@ public class Spielfeld {
 		this.anzahlVersuche = anzahlVersuche;
 		this.eingabeVersuche = new EingabeVersuch[anzahlVersuche];
 		for(int i = 0; i < anzahlVersuche; i++) {
-			eingabeVersuche[i] = new EingabeVersuch(anzahlBuchstaben);
+			eingabeVersuche[i] = new EingabeVersuch(i, anzahlBuchstaben);
 		}
 	}
 

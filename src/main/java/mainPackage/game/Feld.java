@@ -16,13 +16,12 @@ public class Feld {
 	@Autowired
 	public Feld() {
 		this.farbe = "white";
+	}	
+
+	public Feld(int id) {
+		this.id = id;
 	}
 	
-//	@Autowired
-//	public Feld(char buchstabe) {
-//		this.buchstabe = buchstabe;
-//		this.farbe = "white";
-//	}
 	
 	
 	public int getId() {

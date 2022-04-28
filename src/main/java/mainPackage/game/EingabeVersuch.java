@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EingabeVersuch {
 	
+	private int id;
 	
 	private int anzahlBuchstaben;
 	
@@ -16,14 +17,24 @@ public class EingabeVersuch {
 		this.buchstabenFelder = new Feld[anzahlBuchstaben];
 	}
 	
-//	@Autowired
-	public EingabeVersuch(int anzahlBuchstaben) {
+
+	public EingabeVersuch(int id, int anzahlBuchstaben) {
+		this.id = id;
 		this.buchstabenFelder = new Feld[anzahlBuchstaben];
 		for(int i = 0; i < anzahlBuchstaben; i++) {
-			buchstabenFelder[i] = new Feld();
+			int id_feld = Integer.parseInt(Integer.toString(this.id) + Integer.toString(i));			
+			buchstabenFelder[i] = new Feld(id_feld);
 		}
 	}
 
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Feld[] getBuchstabenFelder() {
 		return buchstabenFelder;
