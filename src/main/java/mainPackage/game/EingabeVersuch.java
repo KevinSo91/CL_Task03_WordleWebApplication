@@ -22,8 +22,8 @@ public class EingabeVersuch {
 		this.id = id;
 		this.buchstabenFelder = new Feld[anzahlBuchstaben];
 		for(int i = 0; i < anzahlBuchstaben; i++) {
-			int id_feld = Integer.parseInt(Integer.toString(this.id) + Integer.toString(i));			
-			buchstabenFelder[i] = new Feld(id_feld);
+//			int id_feld = Integer.parseInt(Integer.toString(this.id) + Integer.toString(i));			
+			buchstabenFelder[i] = new Feld(i);
 		}
 	}
 

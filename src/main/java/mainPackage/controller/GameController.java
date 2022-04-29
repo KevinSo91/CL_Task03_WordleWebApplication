@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mainPackage.game.EingabeVersuch;
+import mainPackage.game.Feld;
 import mainPackage.game.GameService;
 import mainPackage.game.GameSession;
 import mainPackage.game.Spielfeld;
@@ -46,7 +47,7 @@ public class GameController {
 	// ************************************** Spielablauf ******************************************************
 	
 	@GetMapping("/play")
-	public String getPlay(Model model)
+	public String getPlay(Model model, @ModelAttribute("eingabeVersuch") EingabeVersuch eingabeVersuch)
 	{
 		model.addAttribute("activePage", "game");
 		
@@ -57,7 +58,8 @@ public class GameController {
 	
 	
 	@PostMapping("/play")
-	public String startPlay(Model model,@RequestParam(defaultValue = "all") String languageOption,
+	public String startPlay(Model model,@ModelAttribute("eingabeVersuch") EingabeVersuch eingabeVersuch,
+										@RequestParam(defaultValue = "all") String languageOption,
 										@RequestParam(defaultValue = "0") String wordLengthOption){		
 		
 		model.addAttribute("activePage", "game");	
@@ -85,17 +87,26 @@ public class GameController {
 		// Befülle Model
 		model.addAttribute("gameSession", this.gameService.getGameSession());
 		
-		return "play";
+		return "redirect:/game/play";
 	}
 	
 	
 	@PostMapping("/play/checkWord")
 	public String checkWord(Model model, @ModelAttribute("eingabeVersuch") EingabeVersuch eingabeVersuch){		
 		model.addAttribute("activePage", "game");
-		
+			
 		// Trage die Buchstaben des EingabeVersuchs in das Spielfeld ein
-		this.gameService.getGameSession().getSpielfeld().setEingabeVersuchElement
-							(this.gameService.getGameSession().getVersuche(), eingabeVersuch);
+		int feld_id = 0;
+		for(Feld feld : eingabeVersuch.getBuchstabenFelder()) {	
+			
+			this.gameService.getGameSession().getSpielfeld().getEingabeVersuchElement(this.gameService.getGameSession().getVersuche()).getBuchstabenFelder()[feld_id].setBuchstabe(feld.getBuchstabe());
+			
+			feld_id ++;
+		}
+		
+//		this.gameService.getGameSession().getSpielfeld().getEingabeVersuchElement
+//							(this.gameService.getGameSession().getVersuche()).setBuchstabenFelder(eingabeVersuch.getBuchstabenFelder());
+				
 		
 		// FOLGT...: Vergleiche Eingabe mit Lösung
 		
@@ -105,7 +116,7 @@ public class GameController {
 		// Befülle Model
 		model.addAttribute("gameSession", this.gameService.getGameSession());
 				
-		return "redirect:/game/play";
+		return "play";
 	}
 	
 

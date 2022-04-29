@@ -31,7 +31,9 @@
 					
 					<td th:each="feld : ${eingabeVersuch.getBuchstabenFelder()}">	
 						
-						<input th:disabled="${gameSession.getVersuche != (eingabeVersuch.getId() - 1)}" type="text" maxlength="1" th:name="${feld.getId()}" 
+						<input th:disabled="${gameSession.getVersuche != (eingabeVersuch.getId() - 1)}" 
+							type="text" maxlength="1" 
+							th:field="*{buchstabenFelder[__${feld.id}__].buchstabe}" 
 							th:value="${feld.getBuchstabe()}">
 					
 					</td>
