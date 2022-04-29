@@ -17,7 +17,7 @@ public class EingabeVersuch {
 		this.buchstabenFelder = new Feld[anzahlBuchstaben];
 	}
 	
-
+	
 	public EingabeVersuch(int id, int anzahlBuchstaben) {
 		this.id = id;
 		this.buchstabenFelder = new Feld[anzahlBuchstaben];
@@ -52,6 +52,7 @@ public class EingabeVersuch {
 	public void setBuchstabenFelder(Feld[] buchstabenFelder) {
 		this.buchstabenFelder = buchstabenFelder;
 	}
+	
 	
 	
 	

@@ -21,7 +21,7 @@
 	<br>
 	
 	<!-- Spielfeld -->
-	<form method="post" action='#' th:action="@{/game/play/checkWord}" th:object="${spielfeld}" align="center">
+	<form method="post" action='#' th:action="@{/game/play/checkWord}" th:object="${eingabeVersuch}" align="center">
 	
 		<div class ="container" align="center">
 			
@@ -31,8 +31,8 @@
 					
 					<td th:each="feld : ${eingabeVersuch.getBuchstabenFelder()}">	
 						
-						<input type="text" maxlength="1" th:name="${feld.getId()}" 
-							th:value="${feld.getBuchstabe()} ?: ''">
+						<input th:disabled="${gameSession.getVersuche != (eingabeVersuch.getId() - 1)}" type="text" maxlength="1" th:name="${feld.getId()}" 
+							th:value="${feld.getBuchstabe()}">
 					
 					</td>
 					

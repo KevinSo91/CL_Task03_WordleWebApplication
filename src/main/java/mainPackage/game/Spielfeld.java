@@ -20,8 +20,9 @@ public class Spielfeld {
 		
 		this.anzahlVersuche = anzahlVersuche;
 		this.eingabeVersuche = new EingabeVersuch[anzahlVersuche];
+		// Erstes Element der EingabeVersuche mit dem Index 0 bekommt die ID 0 !
 		for(int i = 0; i < anzahlVersuche; i++) {
-			eingabeVersuche[i] = new EingabeVersuch(i, anzahlBuchstaben);
+			eingabeVersuche[i] = new EingabeVersuch((i+1), anzahlBuchstaben);
 		}
 	}
 
@@ -47,9 +48,12 @@ public class Spielfeld {
 	public void setEingabeVersuche(EingabeVersuch[] eingabeVersuche) {
 		this.eingabeVersuche = eingabeVersuche;
 	}
-
-
+		
+	public EingabeVersuch getEingabeVersuchElement(int i) {
+		return this.eingabeVersuche[i];
+	}
 	
-	
-	
+	public void setEingabeVersuchElement(int i, EingabeVersuch eingabeVersuch) {
+		this.eingabeVersuche[i] = eingabeVersuch;
+	}
 }

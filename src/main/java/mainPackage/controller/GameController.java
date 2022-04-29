@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mainPackage.game.EingabeVersuch;
 import mainPackage.game.GameService;
 import mainPackage.game.GameSession;
 import mainPackage.game.Spielfeld;
@@ -56,8 +57,7 @@ public class GameController {
 	
 	
 	@PostMapping("/play")
-	public String startPlay(Model model,@ModelAttribute("spielfeld") Spielfeld spielfeld,
-										@RequestParam(defaultValue = "all") String languageOption,
+	public String startPlay(Model model,@RequestParam(defaultValue = "all") String languageOption,
 										@RequestParam(defaultValue = "0") String wordLengthOption){		
 		
 		model.addAttribute("activePage", "game");	
@@ -90,10 +90,17 @@ public class GameController {
 	
 	
 	@PostMapping("/play/checkWord")
-	public String postCheckWord(Model model, @ModelAttribute("spielfeld") Spielfeld spielfeld){		
+	public String checkWord(Model model, @ModelAttribute("eingabeVersuch") EingabeVersuch eingabeVersuch){		
 		model.addAttribute("activePage", "game");
 		
+		// Trage die Buchstaben des EingabeVersuchs in das Spielfeld ein
+		this.gameService.getGameSession().getSpielfeld().setEingabeVersuchElement
+							(this.gameService.getGameSession().getVersuche(), eingabeVersuch);
 		
+		// FOLGT...: Vergleiche Eingabe mit Lösung
+		
+		// Versuche + 1
+		this.gameService.getGameSession().setVersuche(this.gameService.getGameSession().getVersuche() + 1);
 		
 		// Befülle Model
 		model.addAttribute("gameSession", this.gameService.getGameSession());

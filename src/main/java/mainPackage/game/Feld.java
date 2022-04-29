@@ -8,7 +8,7 @@ public class Feld {
 	
 	private int id;
 	
-	private Character buchstabe;
+	private String buchstabe;
 	
 	private String farbe;
 	
@@ -19,7 +19,9 @@ public class Feld {
 	}	
 
 	public Feld(int id) {
+		this.farbe = "white";
 		this.id = id;
+		this.buchstabe = "";
 	}
 	
 	
@@ -32,11 +34,11 @@ public class Feld {
 		this.id = id;
 	}
 
-	public Character getBuchstabe() {
-		return buchstabe;
+	public String getBuchstabe() {
+		return this.buchstabe;
 	}
 
-	public void setBuchstabe(char buchstabe) {
+	public void setBuchstabe(String buchstabe) {
 		this.buchstabe = buchstabe;
 	}
 
