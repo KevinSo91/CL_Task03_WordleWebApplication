@@ -30,6 +30,7 @@ public class GameSession {
 	
 	private int versuche;
 	
+	@Autowired
 	private Spielfeld spielfeld;
 	
 	
@@ -38,6 +39,7 @@ public class GameSession {
 	@Autowired
 	public GameSession(){
 		this.versuche = 0;
+		this.spielfeld = new Spielfeld();
 	}
 	
 //	@Autowired
@@ -90,6 +92,11 @@ public class GameSession {
 
 	public void setLoesungWort(String loesungWort) {
 		this.loesungWort = loesungWort.toUpperCase();
+		this.loesungWortArray = this.loesungWort.toCharArray();
+		this.loesungWortListe = new ArrayList<Character>();
+		for(char c : loesungWortArray) {
+			loesungWortListe.add(c);
+		}
 	}
 
 	public boolean isErfolg() {

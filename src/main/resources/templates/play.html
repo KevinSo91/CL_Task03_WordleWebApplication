@@ -27,15 +27,16 @@
 			
 			<table>			
 				
-				<tr th:each="eingabeVersuch : ${gameSession.getSpielfeld().getEingabeVersuche()}">
+				<tr th:each="eingabeVersuchTH : ${gameSession.getSpielfeld().getEingabeVersuche()}">
 					
-					<td th:each="feld : ${eingabeVersuch.getBuchstabenFelder()}">	
+					<td th:each="feldTH : ${eingabeVersuchTH.getBuchstabenFelder()}">	
 						
-						<input th:disabled="${gameSession.getVersuche != (eingabeVersuch.getId() - 1)}" 
-							type="text" maxlength="1" 
-							th:field="*{buchstabenFelder[__${feld.id}__].buchstabe}" 
-							th:value="${feld.getBuchstabe()}">
-					
+						<input  th:disabled="${gameSession.getVersuche() != (eingabeVersuchTH.getId() - 1)}"
+							type="text" maxlength="1"
+							th:field="*{buchstabenFelder[__${feldTH.id}__].buchstabe}"
+							th:value="${feldTH.buchstabe}">
+						<!-- Test-Ausgabe -->
+						<a th:text="${feldTH.buchstabe}"></a>
 					</td>
 					
 				</tr>
