@@ -56,6 +56,7 @@ public class GameController {
 		
 		model.addAttribute("activePage", "game");	
 		
+		// Erstelle Spiel-Session mit einem Lösungswort abhängig von den Request-Parametern
 		String loesungswort = this.gameService.erzeugeLoesungsWort(languageOption, wordLengthOption);
 		this.gameService.setGameSession(new GameSession(languageOption, loesungswort.length(), loesungswort));
 									
@@ -69,7 +70,8 @@ public class GameController {
 	@PostMapping("/play/checkWord")
 	public String checkWord(Model model, @ModelAttribute("eingabeVersuch") EingabeVersuch eingabeVersuch){		
 		model.addAttribute("activePage", "game");
-			
+		
+		// Setzt die Buchstaben in die Felder und vergleich die Eingabe mit dem Lösungswort
 		this.gameService.pruefeEingabeVersuch(eingabeVersuch);
 		
 		// Befülle Model

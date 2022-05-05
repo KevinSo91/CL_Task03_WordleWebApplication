@@ -37,13 +37,16 @@ public class GameService {
 //	}
 	
 	public void pruefeEingabeVersuch (EingabeVersuch eingabeVersuch) {
-	// Trage die Buchstaben des EingabeVersuchs in das Spielfeld ein
+	
 			int feld_id = 0;
 			for(Feld feld : eingabeVersuch.getBuchstabenFelder()) {	
-				
+				// Trage den Buchstaben in das entsprechende Feld im Spielfeld ein
 				this.gameSession.getSpielfeld()
 				.getEingabeVersuchElement(this.gameSession.getVersuche())
 				.getBuchstabenFelder()[feld_id].setBuchstabe(feld.getBuchstabe());
+				
+				// Prüfe Vorkommen in Lösungswort und setze Farbe
+				
 				
 				feld_id ++;
 			}	

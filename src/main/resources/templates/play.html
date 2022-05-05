@@ -31,12 +31,21 @@
 					
 					<td th:each="feldTH : ${eingabeVersuchTH.getBuchstabenFelder()}">	
 						
-						<input  th:disabled="${gameSession.getVersuche() != (eingabeVersuchTH.getId() - 1)}"
-							type="text" maxlength="1"
-							th:field="*{buchstabenFelder[__${feldTH.id}__].buchstabe}"
-							th:value="${feldTH.buchstabe}">
-						<!-- Test-Ausgabe -->
-						<a th:text="${feldTH.buchstabe}"></a>
+						<!-- Prüfe, ob die Zeile dem aktuellen EingabeVersuch entspricht -->
+						<div th:switch="${gameSession.getVersuche() == (eingabeVersuchTH.getId() - 1)}">
+							
+							<!-- CASE TRUE: Erstelle ein Eingabefeld, dass über th:object an den Controller übergeben wird -->
+							<div th:case="${true}">
+								<input type="text" maxlength="1" th:field="*{buchstabenFelder[__${feldTH.id}__].buchstabe}">							
+							</div>
+							
+							<!-- CASE FALSE (DEFAULT): Erstelle ein deaktiviertes Eingabefeld, dass nur den bereits eingegebenen Buchstaben anzeigt -->
+							<div th:case="*">
+								<input th:disabled="true" type="text" maxlength="1" th:value="${feldTH.buchstabe}">
+							</div>
+								
+						</div>						
+							
 					</td>
 					
 				</tr>
@@ -52,7 +61,7 @@
 	
 	</form>
 	
-	<!-- Test -->
+	<!-- Test Ausgabe -->
 	<div align="center"><span th:text="${gameSession.getLoesungWort}"></span></div>
 	
 </body>
