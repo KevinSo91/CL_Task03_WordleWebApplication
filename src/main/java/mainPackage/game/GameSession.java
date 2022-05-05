@@ -16,19 +16,21 @@ public class GameSession {
 	
 	private String eingabeWort;
 	
-	char[] eingabeWortArray;
+	private char[] eingabeWortArray;
 	
 	private String loesungWort;
 	
-	char[] loesungWortArray;
+	private char[] loesungWortArray;
 	
-	ArrayList<Character> loesungWortListe;
+	private ArrayList<Character> loesungWortListe;
 	
 	private boolean erfolg;
 	
 	private int versucheMax;
 	
 	private int versuche;
+	
+	private boolean lose;
 	
 	@Autowired
 	private Spielfeld spielfeld;
@@ -56,6 +58,7 @@ public class GameSession {
 		for(char c : loesungWortArray) {
 			loesungWortListe.add(c);
 		}
+		this.lose = false;
 	}
 
 	
@@ -99,7 +102,23 @@ public class GameSession {
 		}
 	}
 
-	public boolean isErfolg() {
+	public char[] getLoesungWortArray() {
+		return loesungWortArray;
+	}
+
+	public void setLoesungWortArray(char[] loesungWortArray) {
+		this.loesungWortArray = loesungWortArray;
+	}
+
+	public ArrayList<Character> getLoesungWortListe() {
+		return loesungWortListe;
+	}
+
+	public void setLoesungWortListe(ArrayList<Character> loesungWortListe) {
+		this.loesungWortListe = loesungWortListe;
+	}
+
+	public boolean getErfolg() {
 		return erfolg;
 	}
 
@@ -121,6 +140,14 @@ public class GameSession {
 
 	public void setVersuche(int versuche) {
 		this.versuche = versuche;
+	}
+
+	public boolean isLose() {
+		return lose;
+	}
+
+	public void setLose(boolean lose) {
+		this.lose = lose;
 	}
 
 	public Spielfeld getSpielfeld() {

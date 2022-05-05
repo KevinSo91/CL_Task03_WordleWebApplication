@@ -3,6 +3,9 @@
 <div th:insert="baseStructure/headerInformation :: header">  </div>
 <div th:insert="baseStructure/navbar :: navbar">  </div>
 
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/felder.css"/>
+</head>
 <body>
 	<div class ="container" align="center">
 	
@@ -32,20 +35,20 @@
 					<td th:each="feldTH : ${eingabeVersuchTH.getBuchstabenFelder()}">	
 						
 						<!-- Prüfe, ob die Zeile dem aktuellen EingabeVersuch entspricht -->
-						<div th:switch="${gameSession.getVersuche() == (eingabeVersuchTH.getId() - 1)}">
+						<div th:switch="${gameSession.getVersuche() == (eingabeVersuchTH.getId())}">
 							
 							<!-- CASE TRUE: Erstelle ein Eingabefeld, dass über th:object an den Controller übergeben wird -->
 							<div th:case="${true}">
-								<input type="text" maxlength="1" th:field="*{buchstabenFelder[__${feldTH.id}__].buchstabe}">							
+								<input class="white" type="text" maxlength="1" th:field="*{buchstabenFelder[__${feldTH.id}__].buchstabe}">							
 							</div>
 							
 							<!-- CASE FALSE (DEFAULT): Erstelle ein deaktiviertes Eingabefeld, dass nur den bereits eingegebenen Buchstaben anzeigt -->
 							<div th:case="*">
-								<input th:disabled="true" type="text" maxlength="1" th:value="${feldTH.buchstabe}">
+								<input th:attr="class=${feldTH.farbe}" th:disabled="true" type="text" maxlength="1" th:value="${feldTH.buchstabe}">
 							</div>
 								
-						</div>						
-							
+						</div>
+													
 					</td>
 					
 				</tr>

@@ -22,7 +22,7 @@ public class Spielfeld {
 		this.eingabeVersuche = new EingabeVersuch[anzahlVersuche];
 		// Erstes Element der EingabeVersuche mit dem Index 0 bekommt die ID 0 !
 		for(int i = 0; i < anzahlVersuche; i++) {
-			eingabeVersuche[i] = new EingabeVersuch((i+1), anzahlBuchstaben);
+			eingabeVersuche[i] = new EingabeVersuch((i), anzahlBuchstaben);
 		}
 	}
 
