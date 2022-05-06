@@ -54,6 +54,8 @@ public class GameService {
 	
 	public boolean pruefeEingabeVersuch (EingabeVersuch eingabeVersuch) {
 		
+			// Lokale Variablen zur besseren Eingabeverarbeitung
+		
 			String[] eingabeVersuchArray_Temp = new String[eingabeVersuch.getBuchstabenFelder().length];
 			String eingabeVersuchString_Temp = "";
 			for (int i = 0; i < eingabeVersuch.getBuchstabenFelder().length; i++) {
@@ -67,22 +69,50 @@ public class GameService {
 				this.gameSession.setErfolg(true);
 			}
 			
+			// Iteriere über Felder des aktuellen Eingabeversuchs
+			
 			int index = 0;
 			
 			for(Feld feld : 
 				this.gameSession.getSpielfeld().getEingabeVersuchElement(this.getGameSession().getVersuche()).getBuchstabenFelder()) {
 				
-				feld.setBuchstabe(eingabeVersuchArray_Temp[index]);
+				// Setze Buchstaben in Feld ein
+				
+				feld.setBuchstabe(eingabeVersuchArray_Temp[index]);				
+				
+				// Überprüfe Vorkommen und setze Farbe
 				
 				if(this.gameSession.getErfolg()) {
 					
 					feld.setFarbe("green");
-				}				
-				else if (this.gameSession.getLoesungWort().contains(feld.getBuchstabe()) && feld.getBuchstabe() != "" && feld.getBuchstabe() != " "){
+				}
+				// Falls: Lösungswort enthält den Buchstaben
+				else if (this.gameSession.getLoesungWort().contains(feld.getBuchstabe()) && feld.getBuchstabe() != "" && feld.getBuchstabe() != " "){					
 					
+					// Prüfe mehrfaches Vorkommen des Buchstaben in EingabeVersuch und Lösungswort
+					int anzahlVorkommenEingabe = 0;
 					
-					feld.setFarbe("orange");
+					for(int i = 0; i < eingabeVersuchString_Temp.length(); i++) {
+						if (eingabeVersuchString_Temp.substring(i,i+1).equals(feld.getBuchstabe())){
+							anzahlVorkommenEingabe++;
+						}
+					}
 					
+					int anzahlVorkommenLoesung = 0;
+					for(int i = 0; i < this.gameSession.getWortLaenge(); i++) {
+						if (this.gameSession.getLoesungWort().substring(i,i+1).equals(feld.getBuchstabe())){
+							anzahlVorkommenLoesung++;
+						}
+					}
+					
+					// Fall: der Buchstabe im Lösungswort mindestens so oft vorkommt wie im EingabeVersuch
+					if(anzahlVorkommenLoesung >= anzahlVorkommenEingabe) {
+						feld.setFarbe("orange");
+						
+					}
+					else {
+						feld.setFarbe("grey");
+					}										
 										
 					if(feld.getBuchstabe().equals(String.valueOf(this.gameSession.getLoesungWortArray()[index]))) {
 						feld.setFarbe("green");
