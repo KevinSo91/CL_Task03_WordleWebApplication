@@ -1,0 +1,54 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="baseStructure/headerInformation :: header">  </div>
+<div th:insert="baseStructure/navbar :: navbar">  </div>
+
+<body>
+	<div class="container">
+		<h1 class="text-center">Result</h1>
+	</div>
+
+	<br>
+	<br>
+	
+	<div th:switch="${gameSession.getErfolg()}" class="container" align="center">
+		
+		<div th:case="${true}">		
+		
+			<h1>Win!</h1>
+			<br>
+			<h2>
+				Attempts: <span th:text="${gameSession.getVersuche()}"></span><br>		
+				Time: <span>folgt...</span>
+			</h2>
+			
+		</div>
+		
+		<div th:case="*">		
+		
+			<h1>Lose!</h1>
+			<br>
+			<h2>
+				The Word was: <span th:text="${gameSession.getLoesungWort}"></span><br>						
+			</h2>
+			
+		</div>
+		
+		<br>
+		<br>
+	
+	</div>
+
+	<div class="container" align="center">
+				
+		
+		<button class="btn btn-secondary" onclick="location.href='http://localhost:8101/game'">New Game</button>
+		<button class="btn btn-secondary" onclick="location.href='http://localhost:8101/settings/highscoreList'" th:disabled="true">See Highscores</button>
+		<button class="btn btn-secondary" onclick="location.href='http://localhost:8101/home'">Home</button>
+		
+		
+	</div>
+
+</body>
+
+<div th:insert="baseStructure/footer :: footer"> </div>

@@ -8,11 +8,14 @@ import mainPackage.wort.WortService;
 @Service
 public class GameService {
 
+	
 	@Autowired
 	private GameSession gameSession;
 	
 	@Autowired
 	private WortService wortService;
+	
+	
 	
 	@Autowired
 	public GameService() {
@@ -31,26 +34,7 @@ public class GameService {
 		this.gameSession = gameSession;
 	}
 	
-//	public void pruefeEingabeVersuch (EingabeVersuch eingabeVersuch) {
-//		
-//		int feld_id = 0;
-//		for(Feld feld : eingabeVersuch.getBuchstabenFelder()) {	
-//			// Trage den Buchstaben in das entsprechende Feld im Spielfeld ein
-//			this.gameSession.getSpielfeld()
-//			.getEingabeVersuchElement(this.gameSession.getVersuche())
-//			.getBuchstabenFelder()[feld_id].setBuchstabe(feld.getBuchstabe().toUpperCase());
-//			
-//			// Prüfe Vorkommen in Lösungswort und setze Farbe
-//			
-//			
-//			feld_id ++;
-//		}	
-//		
-//		// FOLGT...: Vergleiche Eingabe mit Lösung
-//		
-//		// Versuche + 1
-//		this.gameSession.setVersuche(this.gameSession.getVersuche() + 1);
-//	}
+	
 	
 	public boolean pruefeEingabeVersuch (EingabeVersuch eingabeVersuch) {
 		
@@ -138,97 +122,11 @@ public class GameService {
 			if(this.gameSession.getErfolg()) {
 				return true;
 			}
-							
-				return false;
+						
+			return false;
 		}
 			
-			
-			
-			
-			
-			
-			
-			
-//			int feldeingabeUser_index = 0; // Zähler für das BuchstabenFelder-Array
-//			
-//			// Iteriere über die BuchstabenFelder des EingabeVersuchs
-//			
-//			for(Feld feld_eingabeUser : eingabeVersuch.getBuchstabenFelder()) {	
-//				
-//				// -> UpperCase
-//				feld_eingabeUser.setBuchstabe(feld_eingabeUser.getBuchstabe().toUpperCase());
-//				
-//				// Trage den Buchstaben in das entsprechende Feld im Spielfeld ein
-//				
-//				this.gameSession.getSpielfeld()
-//				.getEingabeVersuchElement(this.gameSession.getVersuche())
-//				.getBuchstabenFelder()[feldeingabeUser_index].setBuchstabe(feld_eingabeUser.getBuchstabe());
-//				
-//				
-//				if(this.gameSession.getErfolg()) {
-//					
-//				}
 				
-//				 *************** Prüfe Vorkommen in Lösungswort und setze Farbe *********************
-				
-				
-				
-//				// Iteriere über Char-ARRAY des Lösungsworts
-//				
-//				int eingabeVersuch_index = 0;
-//				
-//				for (Feld feld_eingabeVersuch : 
-//					this.gameSession.getSpielfeld().getEingabeVersuchElement(eingabeVersuch_index).getBuchstabenFelder()) {
-//					// Fall: Buchstabe Eingabe = Buchstabe Lösung
-//					if (feld_eingabeUser.getBuchstabe() == feld_eingabeVersuch.getBuchstabe()) {
-//						
-//						if(feldeingabeUser_index == eingabeVersuch_index) {
-//							feld_eingabeVersuch.setFarbe("green");
-////							buchstabe = ' ';
-//						}
-//						else {
-//							feld_eingabeVersuch.setFarbe("orange");
-////						buchstabe = ' ';	
-//						}
-//						
-//					}
-//					else {
-//						feld_eingabeVersuch.setFarbe("grey");
-//					}
-//					
-//					eingabeVersuch_index ++;
-//				}
-				
-				
-//				// Fall: Buchstabe kommt NICHT im Lösungswort vor (Prüfe LISTE)
-//				if (!this.gameSession.getLoesungWortListe().contains(feld.getBuchstabe().charAt(0))){
-//					feld.setFarbe("grey");
-//				}
-//				
-//				// Fall: Buchstabe kommt in Lösungswort vor
-//				else {
-//					// Iteriere über Char-ARRAY des Lösungsworts
-//					for (char buchstabe : this.gameSession.getLoesungWortArray()) {
-//						// Fall: Buchstabe Eingabe = Buchstabe Lösung
-//						if (buchstabe == feld.getBuchstabe().charAt(0)) {
-//							feld.setFarbe("green");
-//							
-//						}
-//					}
-//				}
-//				
-//				
-//				
-//				feldeingabeUser_index ++;
-//			}	
-//			
-//			// Stelle LoesungswortArray wieder her
-//			this.gameSession.setLoesungWortArray(this.gameSession.getLoesungWort().toCharArray());
-			
-			
-			
-			
-			
 	
 	public String erzeugeLoesungsWort (String languageOption, String wordLengthOption) {
 		

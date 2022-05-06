@@ -72,12 +72,20 @@ public class GameController {
 		model.addAttribute("activePage", "game");
 		
 		// Setzt die Buchstaben in die Felder und vergleich die Eingabe mit dem Lösungswort
-		this.gameService.pruefeEingabeVersuch(eingabeVersuch);
+		boolean erfolg = this.gameService.pruefeEingabeVersuch(eingabeVersuch);
 		
 		// Befülle Model
 		model.addAttribute("gameSession", this.gameService.getGameSession());
-				
-		return "redirect:/game/play";
+		
+		
+		if(erfolg || this.gameService.getGameSession().getVersuche() > this.gameService.getGameSession().getVersucheMax()-1) {
+			return "result";
+		}		
+		
+		else {
+			return "redirect:/game/play";
+		}
+		
 	}
 	
 
